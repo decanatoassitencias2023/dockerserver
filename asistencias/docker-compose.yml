@@ -1,0 +1,59 @@
+services:
+  database:
+    restart: always
+    image: mariadb:latest
+    container_name: database
+    volumes:
+      - ./database:/var/lib/mysql
+    environment:
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+    networks:
+      - asistencias-net
+
+  backend:
+    restart: always
+    image: backendphp:8.0
+    container_name: backend
+    working_dir: /opt/php_backend_decanato
+    entrypoint: /opt/php_backend_decanato/index.php
+    environment:
+      - DDBB_HOST=database
+      - DDBB=${DDBB}
+      - DDBB_USER=${DDBB_USER}
+      - DDBB_PASSWORD=${DDBB_PASSWORD}
+    networks:
+      - asistencias-net
+
+  administrador:
+    restart: always
+    image: administradornode:18
+    container_name: administrador
+    command: npm start
+    environment:
+      - REACT_APP_API_URL=backend
+      - REACT_APP_FIRST_BLOCK_LABEL="07 AM - 12 PM"
+      - REACT_APP_SECOND_BLOCK_LABEL="01 PM - 05 PM"
+      - REACT_APP_THIRD_BLOCK_LABEL="05 PM - 08 PM"
+      - REACT_APP_FIRST_BLOCK_KEYS=[1,4,7,10,13]
+      - REACT_APP_SECOND_BLOCK_KEYS=[2,5,8,11,14]
+      - REACT_APP_THIRD_BLOCK_KEYS=[3,6,9,12,15]
+      - REACT_APP_BLOCK_HOURS=4
+      - REACT_APP_SEMESTER_HOURS=15
+    networks:
+      - asistencias-net
+
+  formulario:
+    restart: always
+    image: formularionode:18
+    container_name: formulario
+    command: npm run dev
+    networks:
+      - asistencias-net
+
+networks:
+  asistencias-net:
+    attachable: true
+
