@@ -31,7 +31,7 @@ services:
     container_name: administrador
     command: npm start
     environment:
-      - REACT_APP_API_URL=backend
+      - REACT_APP_API_URL=http://backend
       - REACT_APP_FIRST_BLOCK_LABEL="07 AM - 12 PM"
       - REACT_APP_SECOND_BLOCK_LABEL="01 PM - 05 PM"
       - REACT_APP_THIRD_BLOCK_LABEL="05 PM - 08 PM"
