@@ -17,8 +17,8 @@ services:
     restart: always
     image: backendphp:8.0
     container_name: backend
-    working_dir: /opt/php_backend_decanato
-    entrypoint: /opt/php_backend_decanato/index.php
+    working_dir: /usr/src/backend
+    entrypoint: /usr/src/backend/index.php
     environment:
       - DDBB_HOST=database
       - DDBB=${MARIADB_DATABASE}
