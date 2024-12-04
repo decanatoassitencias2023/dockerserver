@@ -1,7 +1,7 @@
 services:
   # Gestor de contenedores via interfaz web
   portainer:
-    image: portainer/portainer-ce
+    image: portainer/portainer-ce:sts
     container_name: portainer
     ports:
       - 9443:9443
