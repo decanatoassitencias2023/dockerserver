@@ -21,9 +21,9 @@ services:
     entrypoint: /opt/php_backend_decanato/index.php
     environment:
       - DDBB_HOST=database
-      - DDBB=${DDBB}
-      - DDBB_USER=${DDBB_USER}
-      - DDBB_PASSWORD=${DDBB_PASSWORD}
+      - DDBB=${MARIADB_DATABASE}
+      - DDBB_USER=${MARIADB_USER}
+      - DDBB_PASSWORD=${MARIADB_PASSWORD}
     networks:
       - asistencias-net
 
