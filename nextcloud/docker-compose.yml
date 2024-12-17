@@ -26,8 +26,8 @@ services:
       OVERWRITEPROTOCOL: "https"
       OVERWRITECLIURL: "${OVERWRITECLIURL}"
     volumes:
-      - ./data:/var/www/html
-      - ./hooks-post-upgrade:/docker-entrypoint-hooks.d/post-upgrade
+      - /home/fing/nextcloud/data:/var/www/html
+      - /home/fing/nextcloud/hooks-post-upgrade:/docker-entrypoint-hooks.d/post-upgrade
     networks:
       - nextclouddb-net
       - nextcloud-net
@@ -45,7 +45,7 @@ services:
       MARIADB_PASSWORD: "${MYSQL_PASSWORD}"
       MARIADB_DATABASE: "${MYSQL_DATABASE}"
     volumes:
-      - ./database:/var/lib/mysql
+      - /home/fing/nextcloud/database:/var/lib/mysql
     networks:
       - nextclouddb-net
     labels:
