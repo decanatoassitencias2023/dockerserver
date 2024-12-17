@@ -36,13 +36,14 @@ services:
     restart: always
 
   nextclouddb:
-    image: mysql:8.4
+    image: mariadb:10.6
     container_name: nextclouddb
+    command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
     environment:
-      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      MYSQL_USER: "${MYSQL_USER}"
-      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
-      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MARIADB_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MARIADB_USER: "${MYSQL_USER}"
+      MARIADB_PASSWORD: "${MYSQL_PASSWORD}"
+      MARIADB_DATABASE: "${MYSQL_DATABASE}"
     volumes:
       - /home/fing/nextcloud/database:/var/lib/mysql
     networks:
