@@ -29,6 +29,8 @@ services:
       # redes individuales, para proporcionar aislamiento
       # Las redes de otros contenedores se agregan por medio de Portainer
       - portainer_portainer-net
+      - nextcloud-stack_nextcloud-net
+      - asistencias-stack_asistencias-net
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
     restart: always
@@ -36,4 +38,8 @@ services:
 # Redes y volumenes utilizados por los servicios
 networks:
   portainer_portainer-net:
+    external: true
+  nextcloud-stack_nextcloud-net:
+    external: true
+  asistencias-stack_asistencias-net:
     external: true
