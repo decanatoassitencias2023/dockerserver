@@ -2,6 +2,7 @@ version: "3.9"
 services:
   db:
     image: mariadb:10.11
+    container_name: db
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
@@ -15,6 +16,7 @@ services:
 
   passbolt:
     image: passbolt/passbolt:latest-ce
+    container_name: passbolt
     #Alternatively you can use rootless:
     #image: passbolt/passbolt:latest-ce-non-root
     restart: always
