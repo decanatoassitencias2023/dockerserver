@@ -31,6 +31,7 @@ services:
       - portainer_portainer-net
       - nextcloud-stack_nextcloud-net
       - asistencias-stack_asistencias-net
+      - passbolt-stack_passbolt-net
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
     restart: always
@@ -42,4 +43,6 @@ networks:
   nextcloud-stack_nextcloud-net:
     external: true
   asistencias-stack_asistencias-net:
+    external: true
+  passbolt-stack_passbolt-net:
     external: true
