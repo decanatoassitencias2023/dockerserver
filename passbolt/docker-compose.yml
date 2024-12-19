@@ -13,6 +13,8 @@ services:
       - /home/fing/passbolt/database:/var/lib/mysql
     networks:
       - passbolt-net
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 
   passbolt:
     image: passbolt/passbolt:latest-ce
@@ -34,6 +36,8 @@ services:
     networks:
       - passboltdb-net
       - passbolt-net
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     command:
       [
         "/usr/bin/wait-for.sh",
